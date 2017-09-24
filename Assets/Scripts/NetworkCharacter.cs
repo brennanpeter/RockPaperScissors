@@ -14,7 +14,7 @@ public class NetworkCharacter : MonoBehaviour {
 		
 	}
 
-    private void OnSerializePhotonView(PhotonStream stream, PhotonMessageInfo info)
+    private void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
     {
         if (stream.isWriting)
         {
