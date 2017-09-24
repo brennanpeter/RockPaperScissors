@@ -34,8 +34,7 @@ public class NetworkManager : MonoBehaviour {
     void OnJoinedRoom()
     {
         Debug.Log("Room Joined");
-        // GetPlayerSpawnTypeOption
-        SpawnMyPlayer(1);
+        GameObject.Find("UIManager").GetComponent<UIManager>().DisplayClassSelect();
     }
 
     private void OnGUI()
@@ -43,7 +42,7 @@ public class NetworkManager : MonoBehaviour {
         GUILayout.Label(PhotonNetwork.connectionStateDetailed.ToString());
     }
 
-    void SpawnMyPlayer(int teamId)
+    public void SpawnMyPlayer(int teamId)
     {
         if (_spawnSpots == null)
         {

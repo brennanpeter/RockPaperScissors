@@ -10,12 +10,13 @@ public class UIManager : MonoBehaviour {
 	void Start()
 	{
 		HUDOpen = false;
-		DisplayClassSelect ();
+		//DisplayClassSelect ();
 	}
 
 	public void DisplayHUD(PlayerClass pclass)
 	{
 		HUD = GameObject.Instantiate (Resources.Load<GameObject> ("Prefabs/PlayerHUD"));
+        HUD.transform.SetParent(GameObject.FindGameObjectWithTag("Canvas").transform, false);
 		HUDOpen = true;
 
 		//TODO: Load in class image.
