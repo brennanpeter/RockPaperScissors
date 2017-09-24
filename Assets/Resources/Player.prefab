@@ -234,9 +234,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   movementSpeed: 7.5
-  mouseSensiivity: 3.5
-  lookUpDownRange: 60
-  MainCamera: {fileID: 20322587689248492}
+  mouseSensitivity: 3.5
+  jumpSpeed: 5
+  upDownRange: 60
 --- !u!124 &124208990283190754
 Behaviour:
   m_ObjectHideFlags: 1
