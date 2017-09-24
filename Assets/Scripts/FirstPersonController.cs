@@ -1,44 +1,58 @@
 ﻿using UnityEngine;
-using System.Collections;
 
-public class FirstPersonController : MonoBehaviour {
+[RequireComponent(typeof(CharacterController))]
+public class FirstPersonController : MonoBehaviour
+{
 
-    public float movementSpeed = 7.5f;
-
-    public float mouseSensiivity = 3.5f;
+    public float movementSpeed = 5.0f;
+    public float mouseSensitivity = 5.0f;
+    public float jumpSpeed = 20.0f;
 
     float verticalRotation = 0;
-    public float lookUpDownRange = 60.0f;
+    public float upDownRange = 60.0f;
 
-    public Camera MainCamera;
+    float verticalVelocity = 0;
 
-	// Use this for initialization
-	void Start () {
+    CharacterController characterController;
+
+    // Use this for initialization
+    void Start()
+    {
         Screen.lockCursor = true;
-	}
-	
-	// Update is called once per frame
-	void Update () {
-        //View
+        characterController = GetComponent<CharacterController>();
+    }
 
-        float rotLeftRight = Input.GetAxis("Mouse X") * mouseSensiivity;
+    // Update is called once per frame
+    void Update()
+    {
+        // Rotation
+
+        float rotLeftRight = Input.GetAxis("Mouse X") * mouseSensitivity;
         transform.Rotate(0, rotLeftRight, 0);
 
-        verticalRotation -= Input.GetAxis("Mouse Y") * mouseSensiivity;
-        verticalRotation = Mathf.Clamp(verticalRotation, -lookUpDownRange, lookUpDownRange);
-        MainCamera.transform.localRotation = Quaternion.Euler(verticalRotation, 0, 0);
 
-        //Movement
-        float forewardSpeed = Input.GetAxis("Vertical") * movementSpeed;
+        verticalRotation -= Input.GetAxis("Mouse Y") * mouseSensitivity;
+        verticalRotation = Mathf.Clamp(verticalRotation, -upDownRange, upDownRange);
+        Camera.main.transform.localRotation = Quaternion.Euler(verticalRotation, 0, 0);
+
+
+        // Movement
+
+        float forwardSpeed = Input.GetAxis("Vertical") * movementSpeed;
         float sideSpeed = Input.GetAxis("Horizontal") * movementSpeed;
 
-        Vector3 speed = new Vector3(sideSpeed, 0, forewardSpeed);
+        verticalVelocity += Physics.gravity.y * Time.deltaTime;
+
+        if (characterController.isGrounded && Input.GetButton("Jump"))
+        {
+            verticalVelocity = jumpSpeed;
+        }
+
+        Vector3 speed = new Vector3(sideSpeed, verticalVelocity, forwardSpeed);
 
         speed = transform.rotation * speed;
 
-        CharacterController cc = GetComponent<CharacterController>();
 
-        cc.SimpleMove(speed);
-
-	}
+        characterController.Move(speed * Time.deltaTime);
+    }
 }
