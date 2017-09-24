@@ -18,7 +18,7 @@ public class NetworkManager : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Connect () {
-        PhotonNetwork.ConnectUsingSettings("0.0.1");
+        PhotonNetwork.ConnectUsingSettings("0.0.2");
 	}
 
     void OnJoinedLobby()
