@@ -4,7 +4,8 @@ public enum PlayerClass
 {
 	Rock = 0,
 	Paper = 1,
-	Scissors = 2
+	Scissors = 2,
+    NULL = 3
 }
 
 public class Player {
