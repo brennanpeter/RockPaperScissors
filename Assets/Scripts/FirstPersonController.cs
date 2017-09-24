@@ -3,7 +3,6 @@
 [RequireComponent(typeof(CharacterController))]
 public class FirstPersonController : MonoBehaviour
 {
-
     public float movementSpeed = 5.0f;
     public float mouseSensitivity = 5.0f;
     public float jumpSpeed = 20.0f;
@@ -14,6 +13,8 @@ public class FirstPersonController : MonoBehaviour
     float verticalVelocity = 0;
 
     CharacterController characterController;
+
+    public GameObject Camera;
 
     // Use this for initialization
     void Start()
@@ -33,7 +34,7 @@ public class FirstPersonController : MonoBehaviour
 
         verticalRotation -= Input.GetAxis("Mouse Y") * mouseSensitivity;
         verticalRotation = Mathf.Clamp(verticalRotation, -upDownRange, upDownRange);
-        Camera.main.transform.localRotation = Quaternion.Euler(verticalRotation, 0, 0);
+        Camera.transform.localRotation = Quaternion.Euler(verticalRotation, 0, 0);
 
 
         // Movement
