@@ -1,14 +1,10 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEditor;
+﻿using UnityEngine;
 
 public enum PlayerClass
 {
 	Rock = 0,
 	Paper = 1,
-	Scissors = 2,
-	NULL = 3
+	Scissors = 2
 }
 
 public class Player {
