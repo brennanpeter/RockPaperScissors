@@ -6,11 +6,13 @@ using UnityEngine;
 public class NetworkManager : MonoBehaviour {
 
     public Camera StandbyCamera;
+    private UIManager _uiManager;
     private SpawnSpot[] _spawnSpots;
 
 	// Use this for initialization
 	void Start () {
         _spawnSpots = FindObjectsOfType<SpawnSpot>();
+        _uiManager = GameObject.Find("UIManager").GetComponent<UIManager>();
         Connect();
 	}
 	
@@ -34,7 +36,7 @@ public class NetworkManager : MonoBehaviour {
     void OnJoinedRoom()
     {
         Debug.Log("Room Joined");
-        GameObject.Find("UIManager").GetComponent<UIManager>().DisplayClassSelect();
+        _uiManager.DisplayClassSelect();
     }
 
     private void OnGUI()
@@ -58,5 +60,7 @@ public class NetworkManager : MonoBehaviour {
         StandbyCamera.enabled = false;
         player.transform.Find("Main Camera").GetComponent<Camera>().enabled = true;
         player.GetComponent<FirstPersonController>().enabled = true;
+
+        _uiManager.DisplayHUD((PlayerClass)teamId);
     }
 }
