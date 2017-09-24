@@ -1,32 +1,34 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour {
-	Image UIClassImage;
-	Slider UIHealthbar;
-	Slider UISecondaryBar;
+	GameObject HUD;
+	GameObject ClassSelect;
+	bool HUDOpen;
 
 	void Start()
 	{
-		UIClassImage = GameObject.Find ("ClassImage").GetComponent<Image> ();
-		UIHealthbar = GameObject.Find("Healthbar").GetComponent<Slider>();
-		UISecondaryBar = GameObject.Find("Secondary Bar").GetComponent<Slider>();
+		HUDOpen = false;
+		DisplayClassSelect ();
 	}
 
-	public void UpdatePortrait(Sprite image)
+	public void DisplayHUD(PlayerClass pclass)
 	{
-		UIClassImage.sprite = image;
+		HUD = GameObject.Instantiate (Resources.Load<GameObject> ("Prefabs/PlayerHUD"));
+		HUDOpen = true;
+
+		//TODO: Load in class image.
 	}
 
-	public void UpdateHealth(float percent)
+	public void DisplayClassSelect()
 	{
-		UIHealthbar.value = percent;
-	}
+		if (HUDOpen) {
+			Destroy (GameObject.Find ("PlayerHUD"));
+			HUDOpen = false;
+		}
 
-	public void UpdateSecondary (float percent)
-	{
-		UISecondaryBar.value = percent;
+		ClassSelect = GameObject.Instantiate (Resources.Load<GameObject> ("Prefabs/ClassSelect"));
+		ClassSelect.transform.SetParent (GameObject.FindGameObjectWithTag ("Canvas").transform, false);
 	}
 }
