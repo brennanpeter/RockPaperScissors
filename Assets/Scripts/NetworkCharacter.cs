@@ -2,16 +2,18 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class NetworkCharacter : MonoBehaviour {
+public class NetworkCharacter : Photon.MonoBehaviour {
 
-	// Use this for initialization
-	void Start () {
-		
-	}
+    Vector3 _realPosition = Vector3.zero;
+    Quaternion _realRotation = Quaternion.identity;
 	
 	// Update is called once per frame
 	void Update () {
-		
+		if (!photonView.isMine)
+        {
+            transform.position = Vector3.Lerp(transform.position, _realPosition, 0.1f);
+            transform.rotation = Quaternion.Lerp(transform.rotation, _realRotation, 0.1f);
+        }
 	}
 
     private void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
@@ -25,8 +27,8 @@ public class NetworkCharacter : MonoBehaviour {
         else
         {
             // This is someone elses player, we need to receive their position and update their position on our side
-            transform.position = (Vector3)stream.ReceiveNext();
-            transform.rotation = (Quaternion)stream.ReceiveNext();
+            _realPosition = (Vector3)stream.ReceiveNext();
+            _realRotation = (Quaternion)stream.ReceiveNext();
         }
     }
 }
