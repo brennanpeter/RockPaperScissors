@@ -1,11 +1,9 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using UnityEngine;
 
 public class NetworkManager : MonoBehaviour {
 
-    public Camera StandbyCamera;
+    public GameObject StandbyCamera;
     private UIManager _uiManager;
     private SpawnSpot[] _spawnSpots;
 
@@ -57,8 +55,9 @@ public class NetworkManager : MonoBehaviour {
 
         GameObject player = PhotonNetwork.Instantiate("Player", mySpawnSpot.transform.position, mySpawnSpot.transform.rotation, 0);
 
-        StandbyCamera.enabled = false;
-        player.transform.Find("Main Camera").GetComponent<Camera>().enabled = true;
+        StandbyCamera.SetActive(false);
+
+        player.transform.Find("Main Camera").gameObject.SetActive(true);
         player.GetComponent<FirstPersonController>().enabled = true;
 
         _uiManager.DisplayHUD((PlayerClass)teamId);

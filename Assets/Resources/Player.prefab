@@ -29,7 +29,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1309261373071450
 GameObject:
   m_ObjectHideFlags: 0
@@ -40,6 +40,7 @@ GameObject:
   - component: {fileID: 4869749784562970}
   - component: {fileID: 114723652135319526}
   - component: {fileID: 143346696716988850}
+  - component: {fileID: 114492991734278008}
   - component: {fileID: 114123292102503910}
   m_Layer: 0
   m_Name: Player
@@ -113,7 +114,7 @@ Camera:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1289815596822030}
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 1
   m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
@@ -222,6 +223,17 @@ MonoBehaviour:
   instantiationId: -1
   currentMasterID: -1
   isRuntimeInstantiated: 0
+--- !u!114 &114492991734278008
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1309261373071450}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b6ffc252dbbf5ea47882d1207a4a0696, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114723652135319526
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -237,6 +249,7 @@ MonoBehaviour:
   mouseSensitivity: 3.5
   jumpSpeed: 5
   upDownRange: 60
+  Camera: {fileID: 1289815596822030}
 --- !u!124 &124208990283190754
 Behaviour:
   m_ObjectHideFlags: 1
