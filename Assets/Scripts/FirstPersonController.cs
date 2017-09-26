@@ -13,8 +13,6 @@ public class FirstPersonController : MonoBehaviour
     float verticalRotation = 0;
     public float upDownRange = 60.0f;
 
-    float verticalVelocity = 0;
-
     CharacterController characterController;
 
     public GameObject Camera;
@@ -50,6 +48,10 @@ public class FirstPersonController : MonoBehaviour
         if (characterController.isGrounded && Input.GetButton("Jump"))
         {
             _velocity.y = jumpSpeed;
+        }
+        else if (characterController.isGrounded)
+        {
+            _velocity.y = 0;
         }
 
         _velocity = transform.rotation * _velocity;
