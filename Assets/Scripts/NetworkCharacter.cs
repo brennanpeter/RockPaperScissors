@@ -21,8 +21,6 @@ public class NetworkCharacter : Photon.MonoBehaviour {
         }
         else
         {
-            if (_characterController.IsGrounded)
-                _velocity.y = 0;
             transform.position = Vector3.Lerp(transform.position, _realPosition, 0.1f) + _velocity * Time.deltaTime;
             transform.rotation = Quaternion.Lerp(transform.rotation, _realRotation, 0.1f);
         }

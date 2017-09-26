@@ -6,8 +6,6 @@ public class FirstPersonController : MonoBehaviour
     public Vector3 Velocity { get { return _velocity; } }
     private Vector3 _velocity = Vector3.zero;
 
-    public bool IsGrounded { get { return characterController.isGrounded; } }
-
     public float movementSpeed = 5.0f;
     public float mouseSensitivity = 5.0f;
     public float jumpSpeed = 20.0f;
@@ -50,6 +48,10 @@ public class FirstPersonController : MonoBehaviour
         if (characterController.isGrounded && Input.GetButton("Jump"))
         {
             _velocity.y = jumpSpeed;
+        }
+        else if (characterController.isGrounded)
+        {
+            _velocity.y = 0;
         }
 
         _velocity = transform.rotation * _velocity;
