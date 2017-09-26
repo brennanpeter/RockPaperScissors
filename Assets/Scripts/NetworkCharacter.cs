@@ -9,7 +9,7 @@ public class NetworkCharacter : Photon.MonoBehaviour {
     Quaternion _realRotation = Quaternion.identity;
     Vector3 _velocity = Vector3.zero;
 
-    private void Start()
+    private void Awake()
     {
         _characterController = GetComponent<FirstPersonController>();
     }
