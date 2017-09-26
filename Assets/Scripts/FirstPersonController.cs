@@ -3,6 +3,9 @@
 [RequireComponent(typeof(CharacterController))]
 public class FirstPersonController : MonoBehaviour
 {
+    public Vector3 Velocity { get { return _velocity; } }
+    private Vector3 _velocity = Vector3.zero;
+
     public float movementSpeed = 5.0f;
     public float mouseSensitivity = 5.0f;
     public float jumpSpeed = 20.0f;
@@ -19,7 +22,7 @@ public class FirstPersonController : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        Screen.lockCursor = true;
+        Cursor.lockState = CursorLockMode.Locked;
         characterController = GetComponent<CharacterController>();
     }
 
@@ -39,21 +42,18 @@ public class FirstPersonController : MonoBehaviour
 
         // Movement
 
-        float forwardSpeed = Input.GetAxis("Vertical") * movementSpeed;
-        float sideSpeed = Input.GetAxis("Horizontal") * movementSpeed;
+        _velocity.z = Input.GetAxis("Vertical") * movementSpeed;
+        _velocity.x = Input.GetAxis("Horizontal") * movementSpeed;
 
-        verticalVelocity += Physics.gravity.y * Time.deltaTime;
+        _velocity.y += Physics.gravity.y * Time.deltaTime;
 
         if (characterController.isGrounded && Input.GetButton("Jump"))
         {
-            verticalVelocity = jumpSpeed;
+            _velocity.y = jumpSpeed;
         }
 
-        Vector3 speed = new Vector3(sideSpeed, verticalVelocity, forwardSpeed);
-
-        speed = transform.rotation * speed;
-
-
-        characterController.Move(speed * Time.deltaTime);
+        _velocity = transform.rotation * _velocity;
+        
+        characterController.Move(_velocity * Time.deltaTime);
     }
 }
