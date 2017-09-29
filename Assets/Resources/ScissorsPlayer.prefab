@@ -62,7 +62,7 @@ GameObject:
   - component: {fileID: 64815071457117608}
   - component: {fileID: 114452599908542704}
   m_Layer: 0
-  m_Name: ScissorsModel
+  m_Name: Graphics
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

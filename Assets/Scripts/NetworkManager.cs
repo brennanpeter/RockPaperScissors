@@ -16,7 +16,7 @@ public class NetworkManager : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Connect () {
-        PhotonNetwork.ConnectUsingSettings("0.0.3");
+        PhotonNetwork.ConnectUsingSettings("0.0.4");
 	}
 
     void OnJoinedLobby()
@@ -73,6 +73,7 @@ public class NetworkManager : MonoBehaviour {
         StandbyCamera.SetActive(false);
 
         player.transform.Find("Main Camera").gameObject.SetActive(true);
+        player.transform.Find("Graphics").gameObject.SetActive(false);
         player.GetComponent<FirstPersonController>().enabled = true;
 
         _uiManager.DisplayHUD(teamId);
