@@ -53,21 +53,22 @@ public class NetworkManager : MonoBehaviour {
         SpawnSpot[] teamSpots = _spawnSpots.Where(t => t.ClassID == teamId).ToArray();
         SpawnSpot mySpawnSpot = teamSpots[Random.Range(0, teamSpots.Length)];
 
-        GameObject player = PhotonNetwork.Instantiate("Player", mySpawnSpot.transform.position, mySpawnSpot.transform.rotation, 0);
-        GameObject graphics = null;
+        GameObject player;
         switch (teamId)
         {
             case PlayerClass.Rock:
-                graphics = PhotonNetwork.Instantiate("RockModel", player.transform.position, player.transform.rotation, 0);
+                player = PhotonNetwork.Instantiate("RockPlayer", mySpawnSpot.transform.position, mySpawnSpot.transform.rotation, 0);
                 break;
             case PlayerClass.Paper:
-                graphics = PhotonNetwork.Instantiate("PaperPerson", player.transform.position, player.transform.rotation, 0);
+                player = PhotonNetwork.Instantiate("PaperPlayer", mySpawnSpot.transform.position, mySpawnSpot.transform.rotation, 0);
                 break;
             case PlayerClass.Scissors:
-                graphics = PhotonNetwork.Instantiate("ScissorsPerson", player.transform.position, player.transform.rotation, 0);
+                player = PhotonNetwork.Instantiate("ScissorsPlayer", mySpawnSpot.transform.position, mySpawnSpot.transform.rotation, 0);
+                break;
+            default:
+                player = PhotonNetwork.Instantiate("RockPlayer", mySpawnSpot.transform.position, mySpawnSpot.transform.rotation, 0);
                 break;
         }
-        graphics.transform.SetParent(player.transform);
 
         StandbyCamera.SetActive(false);
 
