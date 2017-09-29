@@ -467,6 +467,11 @@ Prefab:
       propertyPath: TeamID
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 114826198942990722, guid: b831dbda6cde0cd49a89de7c2a55d440,
+        type: 2}
+      propertyPath: ClassID
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b831dbda6cde0cd49a89de7c2a55d440, type: 2}
   m_IsPrefabParent: 0
@@ -830,6 +835,11 @@ Prefab:
     - target: {fileID: 114826198942990722, guid: b831dbda6cde0cd49a89de7c2a55d440,
         type: 2}
       propertyPath: TeamID
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114826198942990722, guid: b831dbda6cde0cd49a89de7c2a55d440,
+        type: 2}
+      propertyPath: ClassID
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
