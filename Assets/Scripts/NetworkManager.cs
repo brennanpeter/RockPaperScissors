@@ -42,7 +42,7 @@ public class NetworkManager : MonoBehaviour {
         GUILayout.Label(PhotonNetwork.connectionStateDetailed.ToString());
     }
 
-    public void SpawnMyPlayer(int teamId)
+    public void SpawnMyPlayer(PlayerClass teamId)
     {
         if (_spawnSpots == null)
         {
@@ -50,16 +50,30 @@ public class NetworkManager : MonoBehaviour {
             return;
         }
 
-        SpawnSpot[] teamSpots = _spawnSpots.Where(t => t.TeamID == teamId).ToArray();
+        SpawnSpot[] teamSpots = _spawnSpots.Where(t => t.ClassID == teamId).ToArray();
         SpawnSpot mySpawnSpot = teamSpots[Random.Range(0, teamSpots.Length)];
 
         GameObject player = PhotonNetwork.Instantiate("Player", mySpawnSpot.transform.position, mySpawnSpot.transform.rotation, 0);
+        GameObject graphics = null;
+        switch (teamId)
+        {
+            case PlayerClass.Rock:
+                graphics = PhotonNetwork.Instantiate("RockModel", player.transform.position, player.transform.rotation, 0);
+                break;
+            case PlayerClass.Paper:
+                graphics = PhotonNetwork.Instantiate("PaperPerson", player.transform.position, player.transform.rotation, 0);
+                break;
+            case PlayerClass.Scissors:
+                graphics = PhotonNetwork.Instantiate("ScissorsPerson", player.transform.position, player.transform.rotation, 0);
+                break;
+        }
+        graphics.transform.SetParent(player.transform);
 
         StandbyCamera.SetActive(false);
 
         player.transform.Find("Main Camera").gameObject.SetActive(true);
         player.GetComponent<FirstPersonController>().enabled = true;
 
-        _uiManager.DisplayHUD((PlayerClass)teamId);
+        _uiManager.DisplayHUD(teamId);
     }
 }
