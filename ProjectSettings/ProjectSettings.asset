@@ -368,6 +368,9 @@ PlayerSettings:
   switchUdpSendBufferSize: 9
   switchUdpReceiveBufferSize: 42
   switchSocketBufferEfficiency: 4
+  switchSocketInitializeEnabled: 1
+  switchNetworkInterfaceManagerInitializeEnabled: 1
+  switchPlayerConnectionEnabled: 1
   ps4NPAgeRating: 12
   ps4NPTitleSecret: 
   ps4NPTrophyPackPath: 
@@ -588,7 +591,7 @@ PlayerSettings:
   apiCompatibilityLevel: 2
   cloudProjectId: 3deb2256-cda2-40ea-9396-d00b64f7d936
   projectName: Rock, Paper Scissors
-  organizationId: feeshgames
+  organizationId: gamejelly-9a6810a7-86a4-4cf4-ba43-cd5944437486
   cloudEnabled: 0
   enableNativePlatformBackendsForNewInputSystem: 0
   disableOldInputManagerSupport: 0
