@@ -43,7 +43,7 @@ public class ClassSelectManager : MonoBehaviour
 	public void Spawn ()
 	{
 		Destroy (GameObject.Find ("ClassSelect"));
-        GameObject.Find("_Scripts").GetComponent<NetworkManager>().SpawnMyPlayer((int)SelectedClass);
+        GameObject.Find("_Scripts").GetComponent<NetworkManager>().SpawnMyPlayer(SelectedClass);
 
         Destroy(this.gameObject);
 	}

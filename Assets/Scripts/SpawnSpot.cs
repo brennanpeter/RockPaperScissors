@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class SpawnSpot : MonoBehaviour {
 
-    public int TeamID = 0;
+    public PlayerClass ClassID = 0;
     private Vector3 _offset = new Vector3(0f, 0.5f, 0f);
 
     private void OnDrawGizmos()
